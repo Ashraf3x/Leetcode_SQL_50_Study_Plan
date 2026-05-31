@@ -1,0 +1,36 @@
+name: Update Progress and Cleanup
+
+on:
+  push:
+    paths:
+      - '**/solution.sql'
+
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cleanup redundant files
+        run: |
+          find . -type f \( -name "README.md" -o -name "problem.yml" \) ! -path "./README.md" -delete
+
+      - name: Update Progress
+        run: |
+          solved=$(grep -rC 3 "" . | grep -c "SELECT" || true)
+          total=50
+          echo "# 📈 Progress Tracker" > PROGRESS.md
+          echo "" >> PROGRESS.md
+          echo "**Solved: $solved / $total**" >> PROGRESS.md
+          echo "Last updated: $(date)" >> PROGRESS.md
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Auto-update progress and cleanup files" || exit 0
+          git push
