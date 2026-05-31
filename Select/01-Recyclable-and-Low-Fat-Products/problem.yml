@@ -5,7 +5,7 @@ category: SQL
 tags:
   - Database
   - SQL
-leetcode_link: ""
-solved: false
-date_solved: null
-notes: ""
+leetcode_link: "https://leetcode.com/problems/recyclable-and-low-fat-products/"
+solved: true
+date_solved: "2026-06-01"
+notes: "Basic SELECT query with multiple conditions using AND."
