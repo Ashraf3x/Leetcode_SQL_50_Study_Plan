@@ -22,10 +22,14 @@ jobs:
         run: |
           solved=$(grep -rC 3 "" . | grep -c "SELECT" || true)
           total=50
+          percentage=$((solved * 100 / total))
+          
           echo "# 📈 Progress Tracker" > PROGRESS.md
           echo "" >> PROGRESS.md
-          echo "**Solved: $solved / $total**" >> PROGRESS.md
+          echo "**Solved: $solved / $total ($percentage%)**" >> PROGRESS.md
           echo "Last updated: $(date)" >> PROGRESS.md
+          
+          sed -i "s|Progress-[0-9]*%|Progress-$percentage%|g" README.md
 
       - name: Commit and Push changes
         run: |
