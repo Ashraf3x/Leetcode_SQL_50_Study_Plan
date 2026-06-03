@@ -20,7 +20,13 @@ jobs:
 
       - name: Update Progress
         run: |
-          solved=$(find . -name "*.sql" | wc -l)
+          solved=0
+          for file in $(find . -name "*.sql"); do
+            if grep -q -v -E '^\s*\r?$|^\s*-- SQL Solution\s*\r?$|^\s*-- Write your MySQL query statement below\s*\r?$' "$file"; then
+              solved=$((solved + 1))
+            fi
+          done
+          
           total=50
           percentage=$((solved * 100 / total))
           
