@@ -3,7 +3,7 @@ name: Update Progress and Cleanup
 on:
   push:
     paths:
-      - '**/solution.sql'
+      - '**/*.sql'
 
 jobs:
   update-repo:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Update Progress
         run: |
-          solved=$(grep -rC 3 "" . | grep -c "SELECT" || true)
+          solved=$(find . -name "*.sql" | wc -l)
           total=50
           percentage=$((solved * 100 / total))
           
@@ -37,4 +37,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Auto-update progress and cleanup files" || exit 0
-          git push
+          git push origin HEAD:${{ github.ref_name }}
