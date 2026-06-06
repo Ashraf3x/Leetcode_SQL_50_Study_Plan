@@ -1,3 +1,3 @@
--- SQL Solution
--- Write your MySQL query statement below
-
+select product_name , year , price
+from Product join Sales
+on Product.product_id  = Sales.product_id   
