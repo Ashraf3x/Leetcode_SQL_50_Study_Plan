@@ -1,6 +1,6 @@
 # 😎 LeetCode SQL 50 Study Plan – Solutions Repository
  
-![Progress](https://img.shields.io/badge/Progress-76%25-red) ![SQL Badge](https://img.shields.io/badge/SQL-Practice-blue)
+![Progress](https://img.shields.io/badge/Progress-78%25-red) ![SQL Badge](https://img.shields.io/badge/SQL-Practice-blue)
  
 Welcome to the **LeetCode SQL 50 Study Plan** repository!  
 Here you will find **structured solutions for all 50 free LeetCode SQL problems**, organized to maximize learning and productivity.
